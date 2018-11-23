@@ -2,22 +2,30 @@ const express = require('express'),
       router = express.Router(),
       burger = require('../models/burger')
 
+  // Create all routes and setup logic for each route where required.
+
 router.get('/', function(req, res) {
-  burger.all(function(data) {
+  burger.all(
+    // cb info for burger.js file
+    function(data) {
     var hbsBurger = {
       burger: data
     }
     console.log(hbsBurger)
-    res.render('index', bhsBurger)
+    res.render('index', hbsBurger)
   })
 })
 
 router.post('/api/burgers', function(req, res) {
-  burger.create([
-    'name', 'devour'
-  ],
-  [req.body.name, req.body.devour
-  ], function(result) {
+  burger.create(
+    // db_col info for burger.js file
+    ['burger_name', 'devoured'],
+    
+    // db_row info for burger.js file
+    [req.body.name, req.body.devoured],
+    
+    // cb info for burger.js file
+    function(result) {
     res.json({ id: result.insertId })
   })
 })
@@ -27,8 +35,14 @@ router.put('/api/burgers/:id', function(req, res) {
   console.log('Paramater to Update: ' + params1)
 
   burger.update({
-    devour: req.body.devour
-  }, params1, function(restult) {
+    // keyValue info for burger.js file
+    devoured: req.body.devoured},
+
+    // condition info for burger.js file
+    params1, 
+    
+    // cb info for burger.js file
+    function(result) {
     if(result.changedRows == 0) {
       return res.status(404).end()
     } else {
