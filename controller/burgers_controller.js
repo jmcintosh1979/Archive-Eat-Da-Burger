@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
     // cb info for burger.js file
     function(data) {
     var hbsBurger = {
-      burger: data
+      burgerName: data
     }
     console.log(hbsBurger)
     res.render('index', hbsBurger)
@@ -22,7 +22,7 @@ router.post('/api/burgers', function(req, res) {
     ['burger_name', 'devoured'],
     
     // db_row info for burger.js file
-    [req.body.name, req.body.devoured],
+    [req.body.burger_name, req.body.devoured],
     
     // cb info for burger.js file
     function(result) {
