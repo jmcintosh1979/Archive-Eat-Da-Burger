@@ -19,15 +19,14 @@ $(function () {
   })
 
 
-  // Function that will update the devoured status(True/False)
+  // Function that will update the devoured status from False to True
   $('.change-status').on('click', function (event) {
     let id = $(this).data('id'),
-      newStatus = $(this).data('newStatus'),
-      newValue = {
-        devoured: newStatus
-      }
+        newValue = {
+          devoured: 1
+        }
 
-    $.ajax('/api/burgers' + id, {
+    $.ajax('/api/burgers/' + id, {
       type: 'PUT',
       data: newValue
     }).then(function () {
