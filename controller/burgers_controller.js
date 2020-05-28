@@ -1,5 +1,5 @@
 const express = require('express'),
-      router = express.Router(),
+      router = express.Router("/"),
       burger = require('../models/burger')
 
   // Create all routes and setup logic for each route where required.
